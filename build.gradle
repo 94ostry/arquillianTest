@@ -1,0 +1,19 @@
+group 'com.postrowski'
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+
+    providedCompile "javax:javaee-api:7.0"
+    providedCompile "javax.ws.rs:javax.ws.rs-api:2.0.1"
+
+
+    testCompile group: 'org.jboss.arquillian.junit', name: 'arquillian-junit-container', version: '1.1.11.Final'
+    testCompile group: 'org.wildfly.arquillian', name: 'wildfly-arquillian-container-remote', version: '2.0.1.Final'
+}

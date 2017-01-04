@@ -1,0 +1,30 @@
+version: '2'
+services:
+  jls:
+    image: quay.io/psimes/psimes-wildfly-dev:latest
+    depends_on:
+     - db
+    ports:
+     - "8080:8080"
+     - "8787:8787"
+     - "9990:9990"
+    environment:
+     - TZ=Europe/Warsaw
+     - JAVA_OPTS=-Xms2G -Xmx4G
+#    volumes:
+#     - /c/Users/$USERNAME/wildflydev/documents:/documents
+#     - /c/Users/$USERNAME/wildflydev/logs:/opt/jboss/wildfly/standalone/log
+    networks:
+     - mes-network
+  db:
+    image: postgres:9.4.5
+    environment:
+      - POSTGRES_USER=jls
+      - POSTGRES_PASSWORD=jls
+    ports:
+     - "5432:5432"
+    networks:
+     - mes-network
+networks:
+  mes-network:
+    driver: bridge
